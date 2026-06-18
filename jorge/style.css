@@ -1,0 +1,41 @@
+body {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* Sidebar fixa */
+    .sidebar {
+      width: 280px;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1rem;
+      border-right: 1px solid #ddd;
+      background: #f8f9fa;
+    }
+
+    /* Conteúdo ao lado da sidebar */
+    .content {
+      margin-left: 280px;
+      width: 100%;
+      padding: 1rem;
+    }
+
+    /* Responsivo: sidebar vira offcanvas em telas pequenas */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        transform: translateX(-100%);
+        transition: 0.3s;
+        z-index: 1040;
+      }
+
+      .sidebar.show {
+        transform: translateX(0);
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
