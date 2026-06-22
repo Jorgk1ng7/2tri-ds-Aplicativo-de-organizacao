@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Escolar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Cardápio do Colégio Estadual Emilio De Menezes </h1>
+        <button onclick="mostrarDia()">Cardápio da Semanal</button>
+    </header>
+
+    <main>
+        <div class="card" id="segunda">
+            <h2>Segunda-feira</h2>
+            <button class="day-btn" onclick="mostrarPrato('segunda')">Mostrar Prato</button>
+            <p>Arroz, feijão, frango grelhado e salada.</p>
+        </div>
+
+        <div class="card" id="terca">
+            <h2>Terça-feira</h2>
+            <button class="day-btn" onclick="mostrarPrato('terca')">Mostrar Prato</button>
+            <p>Macarrão com carne moída e legumes.</p>
+        </div>
+
+        <div class="card" id="quarta">
+            <h2>Quarta-feira</h2>
+            <button class="day-btn" onclick="mostrarPrato('quarta')">Mostrar Prato</button>
+            <p>Sopa de legumes com pão.</p>
+        </div>
+
+        <div class="card" id="quinta">
+            <h2>Quinta-feira</h2>
+            <button class="day-btn" onclick="mostrarPrato('quinta')">Mostrar Prato</button>
+            <p>Arroz, feijão, carne de penela e salada.</p>
+        </div>
+
+        <div class="card" id="sexta">
+            <h2>Sexta-feira</h2>
+            <button class="day-btn" onclick="mostrarPrato('sexta')">Mostrar Prato</button>
+            <p></p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

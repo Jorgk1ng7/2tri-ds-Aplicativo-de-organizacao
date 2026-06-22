@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #898989 ;
+}
+
+header{ 
+    background-color: #a9a9a9;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 20px;
+}
+
+button{
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background-color: rgb(137, 137, 137);
+    color: #000000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+main{
+    width: 80%;
+    margin: 20px auto;
+}
+
+.card{
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.destaque{
+    border: 3px solid #2e8b57;
+    background-color: #e7ffe7;
+}
+
+.day-btn{
+    font-size: 1.2rem;
+    background-color: #2e8b57;
+    color: #ffffff;
+}
+
+.dish{
+    margin-top: 10px;
+}
+#botao-destaque{
+    background-color: #000000;
+    color: #4b4b4b;
+}
