@@ -32,7 +32,7 @@ main{
 }
 
 .card{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.381);
     margin-bottom: 15px;
     padding: 20px;
     border-radius: 10px;
@@ -40,8 +40,8 @@ main{
 }
 
 .destaque{
-    border: 3px solid #2e8b57;
-    background-color: #e7ffe7;
+    border: 3px solid #000000;
+    background-color: #d9dbd9;
 }
 
 .day-btn{
@@ -56,4 +56,29 @@ main{
 #botao-destaque{
     background-color: #000000;
     color: #4b4b4b;
+}
+.prato {
+    display: none;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #000000;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    /* Imagem de fundo */
+    background-image: url("colegio.png");
+    background-size: cover;       /* Faz a imagem preencher toda a tela */
+    background-position: center;  /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    background-attachment: fixed; /* Deixa o fundo fixo ao rolar a página */
+} 
+
+header {
+    background: rgba(0, 0, 0, 0.477);
+    color: white;
+    text-align: center;
+    padding: 20px;
 }

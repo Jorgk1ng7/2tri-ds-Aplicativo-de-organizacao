@@ -16,3 +16,13 @@ function mostrarDia() {
         alert("Hoje não há aula.");
     }
 }
+function mostrarPrato(dia) {
+    let card = document.getElementById(dia);
+    let prato = card.querySelector(".prato");
+
+    if (prato.style.display === "block") {
+        prato.style.display = "none";
+    } else {
+        prato.style.display = "block";
+    }
+}
