@@ -25,13 +25,13 @@
             </li>
 
             <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="../gu/index.html" class="nav-link">
                     Agendamento Laboratório
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="../gu/index.html" class="nav-link">
+                <a href="./index.html" class="nav-link">
                     Avisos
                 </a>
             </li>
@@ -66,7 +66,7 @@
 
         <div class="card" style="width: 18rem;">
 
-            <img src="..." class="card-img-top" alt="Imagem do card">
+            <img src="./IMAGENS/image.png" class="card-img-top" alt="Imagem do card">
 
             <div class="card-body">
 
@@ -78,14 +78,50 @@
                     Você tem 2 avisos pendentes.
                 </p>
 
-                <button onclick="redirecionar()">Visitar Site</button>
+                <button type="button" class="btn btn-info" onclick="redirecionar()">Visitar Site</button>
 
             </div>
+
+            <div class="card" style="width: 18rem;">
+
+                <img src="./IMAGENS/PROFESSOR.png" class="card-img-top" alt="Imagem do card">
+    
+                <div class="card-body">
+    
+                    <h6 class="card-title">
+                     Avisos Professor
+                    </h6>
+    
+                    <p class="card-text">
+                        Você tem 1 aviso pendente.
+                    </p>
+    
+                    <button type="button" class="btn btn-info" onclick="mover()">Visitar Site</button>
+    
+                </div>
         </div>
+
+        <div class="card" style="width: 18rem;">
+
+            <img src="./IMAGENS/image copy.png" class="card-img-top" alt="Imagem do card">
+
+            <div class="card-body">
+
+                <h6 class="card-title">
+                 Avisos Para a Família
+                </h6>
+
+                <p class="card-text">
+                    Você tem 0 aviso pendente.
+                </p>
+
+                <button type="button" class="btn btn-info" onclick="ate()">Visitar Site</button>
+
+            </div>
         
     </main>
     
-    <button onclick="redirecionar()">Visitar Site</button>
+    <button onclick="ate()">Visitar Site</button>
 </body>
 
 </html>

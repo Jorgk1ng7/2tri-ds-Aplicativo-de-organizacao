@@ -42,5 +42,12 @@ sidebarLinks.forEach(function (link) {
 
 function redirecionar() {
 
-    window.location.href = 'https://example.com';
+    window.location.href = 'https://dontpad.com/Avisos-Direção';
   }
+  function mover() {
+
+    window.location.href = 'https://dontpad.com/Avisos-Professor';
+  }
+function ate()  {
+    window.location.href = 'https://dontpad.com/Avisos-Para-A-Família';
+}
