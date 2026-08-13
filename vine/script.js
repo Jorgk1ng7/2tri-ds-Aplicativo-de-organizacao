@@ -54,3 +54,31 @@ function mostrarDia(dia) {
         </p>
     `;
 }
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("show");
+  }
+
+  // Elementos
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+
+// Abrir / fechar menu
+menuBtn.addEventListener("click", function () {
+
+    sidebar.classList.toggle("show");
+    sidebarOverlay.classList.toggle("show");
+
+});
+
+
+// Fechar clicando no fundo escuro
+sidebarOverlay.addEventListener("click", function () {
+
+    sidebar.classList.remove("show");
+    sidebarOverlay.classList.remove("show");
+
+});
+
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>    
+    <script src="./script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - Laboratórios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1> Agendamento do Laboratório</h1>
+
+    <select id="lab">
+        <option value="Laboratório 1">Laboratório 1</option>
+        <option value="Laboratório 2">Laboratório 2</option>
+    </select>
+
+    <input type="date" id="data">
+
+    <select id="horario">
+        <option value="Manhã">Manhã (07:15 as 08:05)</option>
+        <option value="Manhã">Manhã (08:05 as 08:55)</option>
+        <option value="Manhã">Manhã (08:55 as 09:45)</option>
+        <option value="Manhã">Manhã (10:00 as 10:50)</option>
+        <option value="Manhã">Manhã (10:50 as 11:35)</option>
+        <option value="Manhã">Manhã (11:35 as 12:25)</option>
+
+    </select>
+
+    <input type="text" id="nome" placeholder="Digite o nome da pessoa">
+
+    <button onclick="agendar()"> Agendar</button>
+    <button onclick="listarAgendamentos()"> Ver todos os agendamentos</button>
+
+    <div id="resultado" class="mensagem"></div>
+
+    <hr>
+
+    <div id="listaAgendamentos"></div>
+</div>
+
+
+</body>
+
+<script>
+    let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
+
+    function agendar() {
+        let lab = document.getElementById('lab').value;
+        let data = document.getElementById('data').value;
+        let horario = document.getElementById('horario').value;
+
+        if (data === '') {
+            document.getElementById('resultado').innerHTML = 
+                '<span class="vermelho"> Escolha uma data primeiro!</span>';
+            return;
+        }
+
+        let jaExiste = agendamentos.some(a => 
+            a.lab === lab && a.data === data && a.horario === horario
+        );
+
+        if (jaExiste) {
+            document.getElementById('resultado').innerHTML = 
+                `<span class="vermelho"> ${lab} já está ocupado no dia ${data} no período da ${horario}!</span>`;
+            return;
+        }
+
+        let novoAgendamento = { lab, data, horario };
+        agendamentos.push(novoAgendamento);
+
+        localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+
+        document.getElementById('resultado').innerHTML = 
+            `<span class="verde"> Agendado com sucesso! ${lab} - ${data} - ${horario}</span>`;
+
+        document.getElementById('data').value = '';
+    }
+
+    function listarAgendamentos() {
+        let lista = document.getElementById('listaAgendamentos');
+
+        if (agendamentos.length === 0) {
+            lista.innerHTML = '<p> Nenhum agendamento ainda.</p>';
+            return;
+        }
+
+        let html = '<h3> Agendamentos salvos:</h3><ul>';
+        for (let a of agendamentos) {
+            html += `<li>🔹 ${a.lab} - ${a.data} - ${a.horario}</li>`;
+        }
+        html += '</ul>';
+
+        html += `<button onclick="limparTudo()" class="btn-excluir"> Limpar todos os agendamentos</button>`;
+
+        lista.innerHTML = html;
+    }
+
+    function limparTudo() {
+        if (confirm('Tem certeza que quer apagar todos os agendamentos?')) {
+            agendamentos = [];
+            localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+            listarAgendamentos(); 
+            document.getElementById('resultado').innerHTML = '<span class="vermelho"> Todos os agendamentos foram removidos.</span>';
+        }
+    }
+</script>
+</html>
