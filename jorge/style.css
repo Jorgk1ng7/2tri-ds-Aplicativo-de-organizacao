@@ -1,42 +1,112 @@
+html,
 body {
-      min-height: 100vh;
-      display: flex;
-    }
+  min-height: 100%;
+  margin: 0;
+  background-image: url(./IMAGENS/ney.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-    /* Sidebar fixa */
-    .sidebar {
-      width: 280px;
-      min-height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      padding: 1rem;
-      border-right: 1px solid #ddd;
-      background: #f8f9fa;
-    }
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    /* Conteúdo ao lado da sidebar */
-    .content {
-      margin-left: 280px;
-      width: 100%;
-      padding: 1rem;
-    }
+.sidebar {
+  width: 280px;
+  height: 100vh;
 
-    /* Responsivo: sidebar vira offcanvas em telas pequenas */
-    @media (max-width: 768px) {
-      .sidebar {
-        position: fixed;
-        transform: translateX(-100%);
-        transition: 0.3s;
-        z-index: 1040;
-      }
+  position: fixed;
 
-      .sidebar.show {
-        transform: translateX(0);
-      }
+  top: 0;
+  left: 0;
 
-      .content {
-        margin-left: 0;
-      }
-    }
-    
+  padding: 1rem;
+
+  background-color: #f8f9fa;
+
+  border-right: 1px solid #ddd;
+
+  z-index: 9999;
+
+  overflow-y: auto;
+}
+
+.content {
+  margin-left: 280px;
+
+  padding: 1rem;
+
+  min-height: 100vh;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+.mobile-menu-btn {
+  display: none;
+
+  position: fixed;
+
+  top: 15px;
+  left: 15px;
+
+  z-index: 10001;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+
+  .nav {
+    margin-top: 50px;
+  }
+
+  .sidebar {
+
+    width: 280px;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.3s ease;
+
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+
+    padding: 1rem;
+
+    padding-top: 70px;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .sidebar-overlay.show {
+    display: block;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    z-index: 9998;
+  }
+}
