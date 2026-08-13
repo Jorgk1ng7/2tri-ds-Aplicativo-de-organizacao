@@ -46,17 +46,17 @@ function listarAgendamentos() {
     let lista = document.getElementById('listaAgendamentos');
 
     if (agendamentos.length === 0) {
-        lista.innerHTML = '<p>📭 Nenhum agendamento ainda.</p>';
+        lista.innerHTML = '<p> Nenhum agendamento ainda.</p>';
         return;
     }
 
-    let html = '<h3>📌 Agendamentos salvos:</h3><ul>';
+    let html = '<h3> Agendamentos salvos:</h3><ul>';
     for (let a of agendamentos) {
         html += `<li>🔹 ${a.nome} - ${a.lab} - ${a.data} - ${a.horario}</li>`;
     }
     html += '</ul>';
 
-    html += `<button onclick="limparTudo()" class="btn-excluir">🗑️ Limpar todos os agendamentos</button>`;
+    html += `<button onclick="limparTudo()" class="btn-excluir"> Limpar todos os agendamentos</button>`;
 
     lista.innerHTML = html;
 }
