@@ -3,31 +3,31 @@ const cardapio = {
     segunda: {
         dia: "Segunda-feira",
         lanche: "Pão com margarina e leite com achocolatado.",
-        saida: "Biscoito."
+        saida: "arroz, feijão e carne."
     },
 
     terca: {
         dia: "Terça-feira",
         lanche: "Bolo de chocolate e leite.",
-        saida: "Fruta."
+        saida: "arroz feijao e ovo"
     },
 
     quarta: {
         dia: "Quarta-feira",
         lanche: "Pão com queijo e suco.",
-        saida: "Biscoito."
+        saida: "polenta branca com frango."
     },
 
     quinta: {
         dia: "Quinta-feira",
         lanche: "Arroz, feijão e carne.",
-        saida: "Fruta."
+        saida: "arroz, feijao, salada com ovo cuzido."
     },
 
     sexta: {
         dia: "Sexta-feira",
         lanche: "Pão com margarina e leite.",
-        saida: "Biscoito."
+        saida: "café com pao de forma com margarina."
     }
 
 };
@@ -49,7 +49,7 @@ function mostrarDia(dia) {
         <br>
 
         <p>
-            <strong>12:25 - Lanche da saída:</strong><br>
+            <strong>10:00 - almoço/lanche</strong><br>
             ${dados.saida}
         </p>
     `;

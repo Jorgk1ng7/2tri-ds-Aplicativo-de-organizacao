@@ -2,7 +2,7 @@ html,
 body {
   min-height: 100%;
   margin: 0;
-  background-image: url(./IMAGENS/ney.jpg);
+  background-color: rgb(6, 25, 149);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -23,7 +23,7 @@ body {
 
   padding: 1rem;
 
-  background-color: #f8f9fa;
+  background-color: #000A68;
 
   border-right: 1px solid #ddd;
 
@@ -109,4 +109,16 @@ body {
 
     z-index: 9998;
   }
+}
+.card {
+  gap: 20px;
+display: flex; 
+flex-direction: row;
+width: 100%;
+height: auto;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
