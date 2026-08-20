@@ -137,7 +137,9 @@
         }
     })();
 
-    // ===== LOGIN =====
+    // ==========================================
+    // 🎯 LOGIN COM REDIRECIONAMENTO
+    // ==========================================
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         hideAllErrors();
@@ -166,6 +168,20 @@
         if (found) {
             showLoginMessage(`Olá, ${found.name}! Login realizado com sucesso.`);
             console.log('Usuário logado:', found);
+            
+            // ==========================================
+            // 🚀 REDIRECIONAMENTO PARA NOVA ABA
+            // ==========================================
+            // Aguarda 1.5 segundos e abre em nova aba
+            setTimeout(() => {
+                // 👇 ALTERE A URL AQUI
+                window.open('../gu/index.html', '_blank');
+                
+                // OUTRAS OPÇÕES:
+                // window.open('dashboard.html', '_blank');  // Página local
+                // window.location.href = 'https://www.google.com';  // Mesma aba
+            }, 1500);
+            
         } else {
             const userExists = users.some(u => u.email === email);
             if (userExists) {
