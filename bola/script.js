@@ -1,132 +1,266 @@
 (function() {
-    const form = document.getElementById('loginForm');
+    'use strict';
+
+    // ===== ELEMENTOS DOM =====
+    const loginPanel = document.getElementById('loginPanel');
+    const signupPanel = document.getElementById('signupPanel');
+    const panelTitle = document.getElementById('panelTitle');
+    const panelSubtitle = document.getElementById('panelSubtitle');
+
+    // Login
+    const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    const emailGroup = document.getElementById('emailGroup');
-    const passwordGroup = document.getElementById('passwordGroup');
+    const rememberCheck = document.getElementById('rememberCheck');
+    const loginSuccess = document.getElementById('loginSuccess');
+    const loginMsgText = document.getElementById('loginMsgText');
     const emailError = document.getElementById('emailError');
     const passwordError = document.getElementById('passwordError');
-    const successMessage = document.getElementById('loginSuccess');
-    const loginBtn = document.getElementById('loginBtn');
+    const forgotLink = document.getElementById('forgotLink');
 
-    // Remove estado de erro visual e mensagens
-    function clearErrors() {
-      emailGroup.classList.remove('error');
-      passwordGroup.classList.remove('error');
-      emailError.classList.remove('show');
-      passwordError.classList.remove('show');
+    // Signup
+    const signupForm = document.getElementById('signupForm');
+    const signupName = document.getElementById('signupName');
+    const signupEmail = document.getElementById('signupEmail');
+    const signupPassword = document.getElementById('signupPassword');
+    const signupConfirm = document.getElementById('signupConfirm');
+    const signupSuccess = document.getElementById('signupSuccess');
+    const signupMsgText = document.getElementById('signupMsgText');
+    const signupNameError = document.getElementById('signupNameError');
+    const signupEmailError = document.getElementById('signupEmailError');
+    const signupPasswordError = document.getElementById('signupPasswordError');
+    const signupConfirmError = document.getElementById('signupConfirmError');
+
+    const showSignupLink = document.getElementById('showSignupLink');
+    const showLoginLink = document.getElementById('showLoginLink');
+
+    // ===== HELPERS =====
+    function showLoginMessage(text, isError = false) {
+        loginMsgText.textContent = text;
+        loginSuccess.classList.add('show');
+        if (isError) {
+            loginSuccess.classList.add('error');
+        } else {
+            loginSuccess.classList.remove('error');
+        }
+        clearTimeout(loginSuccess._timeout);
+        loginSuccess._timeout = setTimeout(() => {
+            loginSuccess.classList.remove('show');
+        }, 5000);
     }
 
-    // Exibe erro em um campo específico
-    function setError(inputGroup, errorElement, message) {
-      inputGroup.classList.add('error');
-      errorElement.textContent = message;
-      errorElement.classList.add('show');
+    function showSignupMessage(text, isError = false) {
+        signupMsgText.textContent = text;
+        signupSuccess.classList.add('show');
+        if (isError) {
+            signupSuccess.classList.add('error');
+        } else {
+            signupSuccess.classList.remove('error');
+        }
+        clearTimeout(signupSuccess._timeout);
+        signupSuccess._timeout = setTimeout(() => {
+            signupSuccess.classList.remove('show');
+        }, 5000);
     }
 
-    // Valida e-mail (formato simples)
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    function hideAllErrors() {
+        document.querySelectorAll('.error-message').forEach(el => el.classList.remove('visible'));
     }
 
-    // Função de validação principal
-    function validateForm() {
-      let isValid = true;
-      clearErrors();
-      successMessage.classList.remove('show');
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-
-      // Valida e-mail
-      if (!email || !isValidEmail(email)) {
-        setError(emailGroup, emailError, 'Digite um e-mail válido (ex: nome@dominio.com)');
-        isValid = false;
-      }
-
-      // Valida senha (mínimo 6)
-      if (!password || password.length < 6) {
-        setError(passwordGroup, passwordError, 'A senha deve ter pelo menos 6 caracteres');
-        isValid = false;
-      }
-
-      return isValid;
+    function setFieldError(errorEl, show) {
+        if (show) {
+            errorEl.classList.add('visible');
+        } else {
+            errorEl.classList.remove('visible');
+        }
     }
 
-    // Evento submit
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+    // ===== ALTERNAR PAINÉIS =====
+    function showLoginPanel() {
+        loginPanel.classList.remove('hidden');
+        signupPanel.classList.remove('active');
+        panelTitle.textContent = 'Bem-vindo';
+        panelSubtitle.textContent = 'Entre com suas credenciais';
+        hideAllErrors();
+        loginSuccess.classList.remove('show');
+        signupSuccess.classList.remove('show');
+    }
 
-      if (validateForm()) {
-        // simula sucesso no login
-        successMessage.classList.add('show');
-        // (opcional) desabilita o botão brevemente para evitar spam
-        loginBtn.disabled = true;
-        loginBtn.style.opacity = '0.7';
-        setTimeout(() => {
-          loginBtn.disabled = false;
-          loginBtn.style.opacity = '1';
-        }, 2000);
+    function showSignupPanel() {
+        loginPanel.classList.add('hidden');
+        signupPanel.classList.add('active');
+        panelTitle.textContent = 'Criar conta';
+        panelSubtitle.textContent = 'Preencha os dados para se cadastrar';
+        hideAllErrors();
+        loginSuccess.classList.remove('show');
+        signupSuccess.classList.remove('show');
+    }
 
-        // limpa erros (já foi feito no validate, mas garantimos)
-        clearErrors();
-
-        // Exemplo: exibe dados no console (apenas para demonstração)
-        console.log('✅ Login simulado com:', {
-          email: emailInput.value.trim(),
-          password: passwordInput.value
-        });
-
-        // (Opcional) resetar campos após "login"?
-        // Não resetamos para manter a experiência, mas podemos.
-        // Se quiser resetar, descomente:
-        // emailInput.value = '';
-        // passwordInput.value = '';
-      } else {
-        // se houver erro, garante que a mensagem de sucesso suma
-        successMessage.classList.remove('show');
-      }
-    });
-
-    // Limpa erros ao digitar (melhora a experiência)
-    emailInput.addEventListener('input', function() {
-      if (emailGroup.classList.contains('error')) {
-        emailGroup.classList.remove('error');
-        emailError.classList.remove('show');
-      }
-      // se sucesso visível, esconder ao editar
-      if (successMessage.classList.contains('show')) {
-        successMessage.classList.remove('show');
-      }
-    });
-
-    passwordInput.addEventListener('input', function() {
-      if (passwordGroup.classList.contains('error')) {
-        passwordGroup.classList.remove('error');
-        passwordError.classList.remove('show');
-      }
-      if (successMessage.classList.contains('show')) {
-        successMessage.classList.remove('show');
-      }
-    });
-
-    // Ao clicar no link "Esqueceu a senha" ou "Crie agora" — apenas para não recarregar a página
-    document.querySelectorAll('.forgot a, .signup-footer a').forEach(link => {
-      link.addEventListener('click', function(e) {
+    showSignupLink.addEventListener('click', function(e) {
         e.preventDefault();
-        // Exemplo: apenas um alerta educativo
-        alert('🔐 Funcionalidade de recuperação / cadastro (simulação).');
-      });
+        showSignupPanel();
     });
 
-    // Ao clicar no checkbox "lembrar" só para demonstrar (não faz nada além do visual)
-    // mas podemos adicionar um feedback sutil.
-    const rememberCheck = document.querySelector('.remember input[type="checkbox"]');
-    if (rememberCheck) {
-      rememberCheck.addEventListener('change', function() {
-        // apenas um feedback visual no console
-        console.log(`✅ Lembrar-me: ${this.checked ? 'ativado' : 'desativado'}`);
-      });
+    showLoginLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showLoginPanel();
+    });
+
+    // ===== BANCO DE DADOS SIMULADO (localStorage) =====
+    function getUsers() {
+        try {
+            return JSON.parse(localStorage.getItem('auth_users')) || [];
+        } catch {
+            return [];
+        }
     }
 
-  })();
+    function saveUsers(users) {
+        localStorage.setItem('auth_users', JSON.stringify(users));
+    }
+
+    // Seed: criar usuário padrão
+    (function seedDefaultUser() {
+        const users = getUsers();
+        if (users.length === 0) {
+            users.push({
+                name: 'Admin',
+                email: 'admin@teste.com',
+                password: '123456'
+            });
+            saveUsers(users);
+        }
+        const first = users[0];
+        if (first) {
+            emailInput.value = first.email;
+            passwordInput.value = first.password;
+        }
+    })();
+
+    // ===== LOGIN =====
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        hideAllErrors();
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        let hasError = false;
+
+        if (!email) {
+            setFieldError(emailError, true);
+            hasError = true;
+        }
+        if (!password || password.length < 6) {
+            setFieldError(passwordError, true);
+            hasError = true;
+        }
+
+        if (hasError) {
+            showLoginMessage('Preencha todos os campos corretamente.', true);
+            return;
+        }
+
+        const users = getUsers();
+        const found = users.find(u => u.email === email && u.password === password);
+
+        if (found) {
+            showLoginMessage(`Olá, ${found.name}! Login realizado com sucesso.`);
+            console.log('Usuário logado:', found);
+        } else {
+            const userExists = users.some(u => u.email === email);
+            if (userExists) {
+                showLoginMessage('Senha incorreta. Tente novamente.', true);
+            } else {
+                showLoginMessage('E-mail não cadastrado. Crie uma conta!', true);
+            }
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    });
+
+    // ===== CRIAR CONTA =====
+    signupForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        hideAllErrors();
+
+        const name = signupName.value.trim();
+        const email = signupEmail.value.trim();
+        const password = signupPassword.value.trim();
+        const confirm = signupConfirm.value.trim();
+        let hasError = false;
+
+        if (!name || name.length < 2) {
+            setFieldError(signupNameError, true);
+            hasError = true;
+        }
+        if (!email) {
+            setFieldError(signupEmailError, true);
+            hasError = true;
+        }
+        if (!password || password.length < 6) {
+            setFieldError(signupPasswordError, true);
+            hasError = true;
+        }
+        if (password !== confirm) {
+            setFieldError(signupConfirmError, true);
+            hasError = true;
+        }
+
+        if (hasError) {
+            showSignupMessage('Preencha todos os campos corretamente.', true);
+            return;
+        }
+
+        const users = getUsers();
+        if (users.some(u => u.email === email)) {
+            showSignupMessage('Este e-mail já está cadastrado. Faça login.', true);
+            return;
+        }
+
+        users.push({ name, email, password });
+        saveUsers(users);
+
+        showSignupMessage(`Conta criada com sucesso, ${name}!`);
+
+        signupName.value = '';
+        signupEmail.value = '';
+        signupPassword.value = '';
+        signupConfirm.value = '';
+
+        setTimeout(() => {
+            emailInput.value = email;
+            passwordInput.value = password;
+            showLoginPanel();
+            showLoginMessage('Conta criada! Faça login com suas credenciais.');
+        }, 2000);
+    });
+
+    // ===== ESQUECEU A SENHA =====
+    forgotLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        if (!email) {
+            showLoginMessage('Digite seu e-mail para recuperar a senha.', true);
+            return;
+        }
+        const users = getUsers();
+        const found = users.find(u => u.email === email);
+        if (found) {
+            showLoginMessage(`Instruções enviadas para ${email} (simulação).`);
+        } else {
+            showLoginMessage('E-mail não encontrado. Verifique ou crie uma conta.', true);
+        }
+    });
+
+    // ===== LEMBRAR-ME =====
+    rememberCheck.addEventListener('change', function() {
+        const msg = this.checked ? 'Lembrar-me ativado.' : 'Lembrar-me desativado.';
+        showLoginMessage(msg, false);
+        setTimeout(() => {
+            loginSuccess.classList.remove('show');
+        }, 2000);
+    });
+
+    console.log('🔐 Sistema funcional com localStorage.');
+    console.log('👤 Usuário padrão: admin@teste.com / 123456');
+})();
