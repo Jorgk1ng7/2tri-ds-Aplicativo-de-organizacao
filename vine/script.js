@@ -58,7 +58,7 @@ function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("show");
   }
 
-  // Elementos
+ // Elementos
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
