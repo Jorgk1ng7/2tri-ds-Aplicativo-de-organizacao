@@ -1,84 +1,168 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
+    min-height: 100vh;
     font-family: Arial, sans-serif;
-    background-color: #898989 ;
+    background: #f4f6f8;
 }
 
-header{ 
-    background-color: #a9a9a9;
-    color: rgb(0, 0, 0);
-    text-align: center;
+/* Card dos dias da semana */
+
+.menu-dias {
+    position: fixed;
+    top: 30px;
+    left: 300px;
+    width: 220px;
     padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
 }
 
-button{
-    margin-top: 10px;
-    padding: 10px 20px;
+.menu-dias h2 {
+    text-align: center;
+    margin-bottom: 18px;
+    color: #333;
+    font-size: 20px;
+}
+
+.menu-dias button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
     border: none;
-    background-color: rgb(137, 137, 137);
-    color: #000000;
-    border-radius: 5px;
+    border-radius: 8px;
+    background: #000000;
+    color: #ffffff;
     cursor: pointer;
 }
 
-main{
-    width: 80%;
-    margin: 20px auto;
+.menu-dias button:hover {
+    background: #dcdcdc;
 }
 
-.card{
-    background-color: rgba(255, 255, 255, 0.381);
-    margin-bottom: 15px;
-    padding: 20px;
+
+/* Conteúdo principal */
+
+.conteudo {
+    margin-left: 540px;
+    padding: 40px;
+    max-width: 1100px;
+}
+
+/* Início */
+
+.inicio {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.inicio h1 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.inicio p {
+    color: #666;
+}
+
+/* Horários */
+
+.horarios-lanches {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.horarios-lanches h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.horario-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #f4f4f4;
+    border-radius: 8px;
+}
+
+.horario-card strong {
+    font-size: 20px;
+    color: #333;
+}
+
+/* Cardápio */
+
+#cardapio {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+#cardapio h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#prato {
+    padding: 25px;
+    background: #f4f4f4;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.destaque{
-    border: 3px solid #000000;
-    background-color: #d9dbd9;
+#prato h3 {
+    margin-bottom: 10px;
+    color: #333;
 }
 
-.day-btn{
-    font-size: 1.2rem;
-    background-color: #4d504e;
-    color: #ffffff;
+#prato p {
+    color: #555;
 }
 
-.dish{
-    margin-top: 10px;
-}
-#botao-destaque{
-    background-color: #000000;
-    color: #4b4b4b;
-}
-.prato {
-    display: none;
-    margin-top: 10px;
-    font-size: 16px;
-    color: #000000;
-}
+/* Celular */
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+@media (max-width: 700px) {
 
-    /* Imagem de fundo */
-    background-image: url("colegio.png");
-    background-size: cover;       /* Faz a imagem preencher toda a tela */
-    background-position: center;  /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Não repete a imagem */
-    background-attachment: fixed; /* Deixa o fundo fixo ao rolar a página */
-} 
+    .menu-dias {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: calc(100% - 30px);
+        margin: 15px;
+    }
 
-header {
-    background: rgba(0, 0, 0, 0.477);
-    color: white;
-    text-align: center;
-    padding: 20px;
+    .conteudo {
+        margin-left: 0;
+        padding: 15px;
+    }
+}
+.sidebar {
+  width: 280px;
+  height: 100vh;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  padding: 1rem;
+
+  background-color: #f8f9fa;
+
+  border-right: 1px solid #ddd;
+
+  z-index: 9999;
+
+  overflow-y: auto;
 }
