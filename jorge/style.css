@@ -1,101 +1,506 @@
 html,
 body {
-  min-height: 100%;
-  margin: 0;
-  background-color: rgb(6, 25, 149);
-  background-repeat: no-repeat;
-  background-size: cover;
+
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+
 }
+
 
 body {
-  min-height: 100vh;
-  overflow-x: hidden;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    background: linear-gradient(
+        135deg,
+        #061995 0%,
+        #102bb8 50%,
+        #07136e 100%
+    );
+
+    font-family: Arial, Helvetica, sans-serif;
+
 }
+
+
+/* =========================
+   SIDEBAR
+========================= */
 
 .sidebar {
-  width: 280px;
-  height: 100vh;
-
-  position: fixed;
-
-  top: 0;
-  left: 0;
-
-  padding: 1rem;
-
-  background-color: #000A68;
-
-  border-right: 1px solid #ddd;
-
-  z-index: 9999;
-
-  overflow-y: auto;
-}
-
-.content {
-  margin-left: 280px;
-
-  padding: 1rem;
-
-  min-height: 100vh;
-
-  position: relative;
-
-  z-index: 1;
-}
-
-.mobile-menu-btn {
-  display: none;
-
-  position: fixed;
-
-  top: 15px;
-  left: 15px;
-
-  z-index: 10001;
-}
-
-.sidebar-overlay {
-  display: none;
-}
-
-
-@media (max-width: 768px) {
-
-  .nav {
-    margin-top: 50px;
-  }
-
-  .sidebar {
 
     width: 280px;
 
-    transform: translateX(-100%);
+    height: 100vh;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    padding: 1.2rem;
+
+    background: linear-gradient(
+        180deg,
+        #000a68,
+        #050d52
+    );
+
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+    z-index: 9999;
+
+    overflow-y: auto;
+
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.2);
 
     transition: transform 0.3s ease;
 
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
-  }
+}
 
 
-  .sidebar.show {
-    transform: translateX(0);
-  }
+/* LINKS */
 
-  .content {
-    margin-left: 0;
+.sidebar .nav-link {
 
-    padding: 1rem;
+    color: #ffffff;
 
-    padding-top: 70px;
-  }
+    padding: 13px 18px;
 
-  .mobile-menu-btn {
+    margin-bottom: 8px;
+
+    border-radius: 10px;
+
+    font-size: 17px;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.sidebar .nav-link:hover {
+
+    background-color: rgba(255, 255, 255, 0.12);
+
+    transform: translateX(5px);
+
+}
+
+
+.sidebar .nav-link.active {
+
+    background: linear-gradient(
+        90deg,
+        #1677ff,
+        #1265e8
+    );
+
+    color: white;
+
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.35);
+
+}
+
+
+/* LINHA */
+
+.sidebar hr {
+
+    border-color: rgba(255, 255, 255, 0.2);
+
+    margin: 25px 0;
+
+}
+
+
+/* =========================
+   PESQUISA
+========================= */
+
+.sidebar input {
+
+    border-radius: 8px;
+
+    border: none;
+
+    padding: 10px;
+
+}
+
+
+.sidebar .btn-outline-success {
+
+    border-radius: 8px;
+
+    white-space: nowrap;
+
+    padding: 8px 12px;
+
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.content {
+
+    margin-left: 280px;
+
+    min-height: 100vh;
+
+    padding: 50px 45px;
+
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.content::before {
+
+    content: "Central de Avisos";
+
     display: block;
-  }
 
-  .sidebar-overlay.show {
+    color: white;
+
+    font-size: 36px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+    text-align: center;
+
+}
+
+
+.content::after {
+
+    content: "Confira os comunicados da escola";
+
     display: block;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 17px;
+
+    text-align: center;
+
+    margin-bottom: 40px;
+
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards {
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    gap: 30px;
+
+    width: 100%;
+
+    flex-wrap: wrap;
+
+}
+
+
+.card {
+
+    width: 310px !important;
+
+    min-height: 390px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background-color: white;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    flex-shrink: 0;
+
+}
+
+
+/* EFEITO AO PASSAR MOUSE */
+
+.card:hover {
+
+    transform: translateY(-10px);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.35);
+
+}
+
+
+/* =========================
+   IMAGEM
+========================= */
+
+.card-img-top {
+
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: cover;
+
+    transition: transform 0.4s ease;
+
+}
+
+
+.card:hover .card-img-top {
+
+    transform: scale(1.04);
+
+}
+
+
+/* =========================
+   CORPO DO CARD
+========================= */
+
+.card-body {
+
+    padding: 23px;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.card-title {
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    color: #111827;
+
+    margin-bottom: 10px;
+
+}
+
+
+.card-text {
+
+    color: #555;
+
+    font-size: 16px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.card .btn-info {
+
+    background: linear-gradient(
+        135deg,
+        #10bde8,
+        #08a6d0
+    );
+
+    border: none;
+
+    color: #00131a;
+
+    font-weight: 600;
+
+    border-radius: 9px;
+
+    padding: 11px 18px;
+
+    width: fit-content;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.card .btn-info:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 15px rgba(0, 180, 220, 0.4);
+
+    background: linear-gradient(
+        135deg,
+        #18c9f2,
+        #0aafd8
+    );
+
+}
+
+
+/* =========================
+   MENU MOBILE
+========================= */
+
+.mobile-menu-btn {
+
+    display: none;
+
+    position: fixed;
+
+    top: 15px;
+    left: 15px;
+
+    z-index: 10001;
+
+    border-radius: 10px;
+
+}
+
+
+/* FUNDO */
+
+.sidebar-overlay {
+
+    display: none;
+
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media screen and (max-width: 768px) {
+
+    .sidebar {
+
+        width: 280px;
+
+        transform: translateX(-100%);
+
+        transition: transform 0.3s ease;
+
+    }
+
+
+    .sidebar.show {
+
+        transform: translateX(0);
+
+    }
+
+
+    .content {
+
+        margin-left: 0;
+
+        padding: 80px 20px 30px;
+
+    }
+
+
+    .content::before {
+
+        font-size: 28px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .content::after {
+
+        font-size: 15px;
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .mobile-menu-btn {
+
+        display: block;
+
+    }
+
+
+    .sidebar-overlay.show {
+
+        display: block;
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100vw;
+        height: 100vh;
+
+        background: rgba(0, 0, 0, 0.55);
+
+        z-index: 9998;
+
+    }
+
+
+    .cards {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 20px;
+
+    }
+
+
+    .card {
+
+        width: 100% !important;
+
+        max-width: 380px;
+
+    }
+
+}
+
+
+/* ==================================================
+   JANELA FLUTUANTE DOS AVISOS
+================================================== */
+
+.modal-aviso {
+
+    display: none;
 
     position: fixed;
 
@@ -105,20 +510,232 @@ body {
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.65);
 
-    z-index: 9998;
-  }
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    z-index: 99999;
+
 }
-.card {
-  gap: 20px;
-display: flex; 
-flex-direction: row;
-width: 100%;
-height: auto;
+
+
+/* MOSTRAR JANELA */
+
+.modal-aviso.mostrar {
+
+    display: flex;
+
 }
-.container {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+
+
+/* CAIXA DO AVISO */
+
+.conteudo-modal {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 550px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4);
+
+    animation: aparecerModal 0.3s ease;
+
+}
+
+
+/* ÍCONE */
+
+.icone-modal {
+
+    font-size: 50px;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* TÍTULO */
+
+.conteudo-modal h2 {
+
+    color: #07136e;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* MENSAGEM */
+
+.conteudo-modal p {
+
+    color: #4b5563;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* BOTÃO X */
+
+.fechar-modal {
+
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 32px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    border-radius: 50%;
+
+    transition: 0.2s;
+
+}
+
+
+.fechar-modal:hover {
+
+    background: #f1f1f1;
+
+    color: #111;
+
+}
+
+
+/* BOTÃO FECHAR */
+
+.btn-fechar-modal {
+
+    border: none;
+
+    background: linear-gradient(
+        135deg,
+        #061995,
+        #1677ff
+    );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    padding: 11px 30px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+}
+
+
+.btn-fechar-modal:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 18px rgba(6, 25, 149, 0.35);
+
+}
+
+
+/* =========================
+   ANIMAÇÃO
+========================= */
+
+@keyframes aparecerModal {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.8) translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1) translateY(0);
+
+    }
+
+}
+
+
+/* =========================
+   MODAL NO CELULAR
+========================= */
+
+@media screen and (max-width: 600px) {
+
+    .conteudo-modal {
+
+        padding: 30px 22px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .icone-modal {
+
+        font-size: 42px;
+
+    }
+
+
+    .conteudo-modal h2 {
+
+        font-size: 23px;
+
+    }
+
+
+    .conteudo-modal p {
+
+        font-size: 15px;
+
+    }
+
 }

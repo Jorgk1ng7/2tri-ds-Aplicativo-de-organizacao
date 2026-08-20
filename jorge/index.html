@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Meu Sistema</title>
+    <title>Next Time</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="script.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
 
         <ul class="nav nav-pills flex-column mb-auto">
@@ -32,7 +33,7 @@
 
             <li class="nav-item">
                 <a href="./index.html" class="nav-link">
-                    Avisos
+                    Central de Avisos
                 </a>
             </li>
 
@@ -46,81 +47,156 @@
 
         <hr>
 
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Pesquisar">
+        <!-- PESQUISA -->
+        <form class="d-flex" id="searchForm">
+
+            <input class="form-control me-2" type="search" id="searchInput" placeholder="Pesquisar avisos..."
+                autocomplete="off">
 
             <button class="btn btn-outline-success" type="submit">
-                Pesquisar
+                🔍
             </button>
+
         </form>
 
     </aside>
 
+
+    <!-- BOTÃO DO MENU MOBILE -->
     <button type="button" class="btn btn-primary mobile-menu-btn" id="menuBtn">
         ☰ Menu
     </button>
 
+
+    <!-- FUNDO ESCURO DA SIDEBAR -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+
+    <!-- CONTEÚDO -->
     <main class="content">
 
-        <div class="card" style="width: 18rem;">
+        <div class="cards">
 
-            <img src="./IMAGENS/image.png" class="card-img-top" alt="Imagem do card">
+            <!-- CARD 1 -->
+            <div class="card aviso-card">
 
-            <div class="card-body">
+                <img src="./IMAGENS/image.png" class="card-img-top" alt="Avisos da direção">
 
-                <h5 class="card-title">
-                    Avisos da Direção
-                </h5>
+                <div class="card-body">
 
-                <p class="card-text">
-                    Você tem 2 avisos pendentes.
-                </p>
+                    <h5 class="card-title">
+                        Avisos da Direção
+                    </h5>
 
-                <button type="button" class="btn btn-info" onclick="redirecionar()">Visitar Site</button>
+                    <p class="card-text">
+                        Você tem 1 avisos pendentes.
+                    </p>
+
+                    <button type="button" class="btn btn-info" onclick="abrirAviso('direcao')">
+                        Ver Aviso
+                    </button>
+
+                </div>
 
             </div>
 
-            <div class="card" style="width: 18rem;">
 
-                <img src="./IMAGENS/PROFESSOR.png" class="card-img-top" alt="Imagem do card">
-    
+            <!-- CARD 2 -->
+            <div class="card aviso-card">
+
+                <img src="./IMAGENS/PROFESSOR.png" class="card-img-top" alt="Avisos dos professores">
+
                 <div class="card-body">
-    
-                    <h6 class="card-title">
-                     Avisos Professor
-                    </h6>
-    
+
+                    <h5 class="card-title">
+                        Avisos Professor
+                    </h5>
+
                     <p class="card-text">
                         Você tem 1 aviso pendente.
                     </p>
-    
-                    <button type="button" class="btn btn-info" onclick="mover()">Visitar Site</button>
-    
+
+                    <button type="button" class="btn btn-info" onclick="abrirAviso('professor')">
+                        Ver Aviso
+                    </button>
+
                 </div>
-        </div>
-
-        <div class="card" style="width: 18rem;">
-
-            <img src="./IMAGENS/image copy.png" class="card-img-top" alt="Imagem do card">
-
-            <div class="card-body">
-
-                <h6 class="card-title">
-                 Avisos Para a Família
-                </h6>
-
-                <p class="card-text">
-                    Você tem 0 aviso pendente.
-                </p>
-
-                <button type="button" class="btn btn-info" onclick="ate()">Visitar Site</button>
 
             </div>
-        
+
+
+            <!-- CARD 3 -->
+            <div class="card aviso-card">
+
+                <img src="./IMAGENS/image copy.png" class="card-img-top" alt="Avisos para a família">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+                        Avisos Para a Família
+                    </h5>
+
+                    <p class="card-text">
+                        Você tem 0 avisos pendentes.
+                    </p>
+
+                    <button type="button" class="btn btn-info" onclick="abrirAviso('familia')">
+                        Ver Aviso
+                    </button>
+
+                </div>  
+
+            </div>
+
+        </div>
+
     </main>
-    
+
+
+    <!-- =========================
+         JANELA FLUTUANTE
+    ========================= -->
+
+    <div class="modal-aviso" id="modalAviso">
+
+        <div class="conteudo-modal">
+
+            <!-- BOTÃO X -->
+            <button class="fechar-modal" onclick="fecharAviso()" aria-label="Fechar aviso">
+                &times;
+            </button>
+
+
+            <!-- ÍCONE -->
+            <div class="icone-modal" id="iconeAviso">
+                📢
+            </div>
+
+
+            <!-- TÍTULO -->
+            <h2 id="tituloAviso">
+                Aviso
+            </h2>
+
+
+            <!-- MENSAGEM -->
+            <p id="mensagemAviso">
+                Mensagem do aviso.
+            </p>
+
+
+            <!-- BOTÃO -->
+            <button class="btn-fechar-modal" onclick="fecharAviso()">
+                Fechar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JS -->
+    <script src="script.js"></script>
 
 </body>
 
