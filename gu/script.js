@@ -1,4 +1,5 @@
 
+
 let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
 
 
@@ -66,6 +67,6 @@ function limparTudo() {
         agendamentos = [];
         localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
         listarAgendamentos();
-        document.getElementById('resultado').innerHTML = '<span class="vermelho">🗑️ Todos os agendamentos foram removidos.</span>';
+        document.getElementById('resultado').innerHTML = '<span class="vermelho"> Todos os agendamentos foram removidos.</span>';
     }
 }
